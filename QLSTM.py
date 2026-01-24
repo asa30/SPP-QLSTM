@@ -229,7 +229,7 @@ class QLSTM(nn.Module):
 
 
 class QShallowRegressionLSTM(nn.Module):
-    def __init__(self, num_sensors, hidden_units, n_qubits=0, n_qlayers=1):
+    def __init__(self, num_sensors, hidden_units, n_qubits=0, n_qlayers=1, backend="default.qubit"):
         super().__init__()
         self.num_sensors = num_sensors  # this is the number of features
         self.hidden_units = hidden_units
@@ -241,6 +241,7 @@ class QShallowRegressionLSTM(nn.Module):
             batch_first=True,
             n_qubits=n_qubits,
             n_qlayers=n_qlayers,
+            backend=backend,
         )
 
         self.linear = nn.Linear(in_features=self.hidden_units, out_features=1)
